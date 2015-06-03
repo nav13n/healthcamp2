@@ -6,7 +6,7 @@
 </script>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="description" content="Visualizing mortality index data from 2011-2012 data.">
+<meta name="description" content="Infant mortality index">
 <meta name="author" content="Abul Basar">
  
 
@@ -25,9 +25,10 @@
 		label{font-size: 14px; font-weight: normal;}
 		.bold {font-weight: bold}
 		p{font-size: 14px}
+		.ng-cloak{display: none}
 	</style>
 	
-	<h1>Recommendation Engine to Control Child Mortality</h1>
+	<h1>Recommendation Engine to Control Infant Mortality</h1>
 	<div class="container-fluid" ng-controller="myController">
 		<div class="row">
 			<div class="col-md-6">
@@ -38,7 +39,7 @@
 			</div>
 			<div class="col-md-6">
 				
-				<form id="frm" method="post" action="/submit">
+				<form id="frm" method="post" action="/submit" class="ng-cloak">
 					<div class="row" style="font-weight: bold">
 						<div class="col-md-6">Recommendation</div>
 						<div class="col-md-3">Indicative Value</div>
@@ -47,19 +48,19 @@
 					{% raw %}
 					<div class="row" ng-repeat="feature in features">
 						<div class="col-md-6">
-							<label class="ng-cloak">{{feature.name}}</label>
+							<label>{{feature.name}}</label>
 						</div>
 						<div class="col-md-3">
 							<input type="text" class="form-control" name="var{{feature.id}}" ng-model="feature.value">
 						</div>
-						<div class="col-md-3 ng-cloak">{{feature.weight}}</div>
+						<div class="col-md-3">{{feature.weight}}</div>
 					</div>
 					<div class="row">
 						<div class="col-md-6">
 							<label class="bold">Child Mortality Index</label>
 						</div>
 						<div class="col-md-6">
-							<span class="ng-cloak" ng-class="mortality_index < 0 ? 'label label-success' : 'label label-danger'">{{mortality_index | number:2}}</span>
+							<span ng-class="mortality_index < 0 ? 'label label-success' : 'label label-danger'">{{mortality_index | number:2}}</span>
 						</div>
 					</div>					
 					{% endraw %}
@@ -72,9 +73,10 @@
 				</form>
 			</div>
 		</div>
-		<div class="row">
-			<div class="col-md-12">
+		<div class="row ng-cloak" >
+			<div class="col-md-7">
 				<p>Description: The heat-map represents the mortality index values per district of West Bengal, India. A model to calculate mortality index has been created by examining the data available on <a target= "_blank" href="https://data.gov.in/catalog/hmis-district-level-item-wise-and-month-wise-comparison-various-indicators-west-bengal#web_catalog_tabs_block_10">data.gov.in</a> for year 2011 and 2012.
+				<p>Technology: Solution is hosted on IBM Bluemix cloud. Source code is maintained in this <a href="https://github.com/abulbasar/healthcamp2" target="_blank">Github</a> repository.</p>
 			</div>
 		</div>
 	</div>
